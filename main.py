@@ -6,12 +6,12 @@ from PIL import ImageTk, Image
 cpgval=0
 
 def getuserlist():
-    maindata = pd.read_csv('./data.csv')
+    maindata = pd.read_csv('./img/data.csv')
     userlist = maindata['u'].values.tolist()
     return userlist
 
 def getpasslist():
-    maindata = pd.read_csv('./data.csv')
+    maindata = pd.read_csv('./img/data.csv')
     passlist = maindata['p'].values.tolist()
     return passlist
 
@@ -22,7 +22,7 @@ def savenew():
     password = passEntry.get()
 
     newdata = pd.DataFrame({'user':[username], 'pass':[password]})
-    newdata.to_csv('./data.csv', mode='a', index=False, header=False)
+    newdata.to_csv('./img/data.csv', mode='a', index=False, header=False)
 
     
     addWindow.destroy()
@@ -79,10 +79,10 @@ def saveold(pindex):
     username = userEntry.get()
     password = passEntry.get()
 
-    maindata = pd.read_csv('./data.csv')
+    maindata = pd.read_csv('./img/data.csv')
     maindata.iloc[pindex,0]=username
     maindata.iloc[pindex,1]=password
-    maindata.to_csv('./data.csv', index=False)
+    maindata.to_csv('./img/data.csv', index=False)
 
     updateWindow.destroy()
 
@@ -91,9 +91,9 @@ def saveold(pindex):
     
 
 def delpass(passindex):
-    maindata = pd.read_csv('./data.csv')
+    maindata = pd.read_csv('./img/data.csv')
     maindata.drop(labels=[passindex], axis=0, inplace=True)
-    maindata.to_csv('./data.csv', index=False)
+    maindata.to_csv('./img/data.csv', index=False)
     manageWindow.destroy()
     managepass()
 
@@ -299,15 +299,15 @@ root.geometry('500x500')
 root.geometry("+{}+{}".format(525, 200))
 ##########################
 
-opeyeimage = PhotoImage(file="./opeye.png")
-cleyeimage = PhotoImage(file="./cleye.png")
-previmage = PhotoImage(file='./p1.png')
-nextimage = PhotoImage(file='./n1.png')
-delimage = PhotoImage(file='./del.png')
-updateimage = PhotoImage(file='./update.png')
-addimage = PhotoImage(file='./add.png')
-createpassimage = PhotoImage(file='./cpi.png')
-updatepassimage = PhotoImage(file='./upi.png')
+opeyeimage = PhotoImage(file='./img/opeye.png')
+cleyeimage = PhotoImage(file='./img/cleye.png')
+previmage = PhotoImage(file='./img/p1.png')
+nextimage = PhotoImage(file='./img/n1.png')
+delimage = PhotoImage(file='./img/del.png')
+updateimage = PhotoImage(file='./img/update.png')
+addimage = PhotoImage(file='./img/add.png')
+createpassimage = PhotoImage(file='./img/cpi.png')
+updatepassimage = PhotoImage(file='./img/upi.png')
 
 oldButton = Button(text='Log in', command=managepass)
 oldButton.pack(pady=50)
