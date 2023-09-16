@@ -1,19 +1,24 @@
 from tkinter import *
 from tkinter import font
 import pandas as pd
+import cryptocode
 from PIL import ImageTk, Image
 
 cpgval=0
+PASS = "mypassword"
 
 def getuserlist():
-    maindata = pd.read_csv('./img/data.csv')
+    maindata = pd.read_csv('./data.csv')
     userlist = maindata['u'].values.tolist()
     return userlist
 
 def getpasslist():
-    maindata = pd.read_csv('./img/data.csv')
+    maindata = pd.read_csv('./data.csv')
     passlist = maindata['p'].values.tolist()
-    return passlist
+    upasslist = list()
+    for i in passlist:
+        upasslist.append(cryptocode.decrypt(i, PASS))
+    return upasslist
 
 def savenew():
     global addWindow, userEntry, passEntry
@@ -21,8 +26,8 @@ def savenew():
     username = userEntry.get()
     password = passEntry.get()
 
-    newdata = pd.DataFrame({'user':[username], 'pass':[password]})
-    newdata.to_csv('./img/data.csv', mode='a', index=False, header=False)
+    newdata = pd.DataFrame({'user':[username], 'pass':[cryptocode.encrypt(password, PASS)]})
+    newdata.to_csv('./data.csv', mode='a', index=False, header=False)
 
     
     addWindow.destroy()
@@ -79,10 +84,10 @@ def saveold(pindex):
     username = userEntry.get()
     password = passEntry.get()
 
-    maindata = pd.read_csv('./img/data.csv')
+    maindata = pd.read_csv('./data.csv')
     maindata.iloc[pindex,0]=username
-    maindata.iloc[pindex,1]=password
-    maindata.to_csv('./img/data.csv', index=False)
+    maindata.iloc[pindex,1]=cryptocode.encrypt(password, PASS)
+    maindata.to_csv('./data.csv', index=False)
 
     updateWindow.destroy()
 
@@ -91,9 +96,9 @@ def saveold(pindex):
     
 
 def delpass(passindex):
-    maindata = pd.read_csv('./img/data.csv')
+    maindata = pd.read_csv('./data.csv')
     maindata.drop(labels=[passindex], axis=0, inplace=True)
-    maindata.to_csv('./img/data.csv', index=False)
+    maindata.to_csv('./data.csv', index=False)
     manageWindow.destroy()
     managepass()
 
