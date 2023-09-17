@@ -33,7 +33,7 @@ pip install pillow
 
 1. Run the application using Python:
    ```bash
-   python password_manager.py
+   python main.py
    ```
 2. Click the "Log in" button to access the password manager.
 3. Inside the password manager, you can perform the following actions:
