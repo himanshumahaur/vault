@@ -53,7 +53,7 @@ def addpass():
     cpilabel = Label(addWindow, image=createpassimage,bg='#48d1cc')
     cpilabel.grid(row=1, column=1, columnspan=5)
     
-    addLabel = Label(addWindow, fg='white', bg='#004953', height=2, text='Create New Password', padx=(111))
+    addLabel = Label(addWindow, fg='white', bg='#004953', height=2, text='Create New Password', padx=(165))
     addLabel.grid(row=0, column=1, columnspan=5)
 
     userLabel = Label(addWindow, bg='#48d1cc', text='Username')
@@ -122,7 +122,7 @@ def updatepass(pindex):
     upilabel = Label(updateWindow, image=updatepassimage,bg='#48d1cc')
     upilabel.grid(row=1, column=1, columnspan=5)
 
-    updateLabel = Label(updateWindow, fg='white', bg='#004953', height=2, text='Update Old Password', padx=(113))
+    updateLabel = Label(updateWindow, fg='white', bg='#004953', height=2, text='Update Old Password', padx=(165))
     updateLabel.grid(row=0, column=1, columnspan=5)
 
     userLabel = Label(updateWindow, bg='#48d1cc', text='Username')
@@ -236,11 +236,11 @@ def managepass():
     
     emptyframe = Frame(manageWindow, bg='#009a9a')
     emptyframe.grid(row=0, column=0, columnspan=4)
-    emptylabel = Label(emptyframe, bg='#009a9a', padx=318, pady=15)
+    emptylabel = Label(emptyframe, bg='#009a9a', padx=363, pady=15)
     emptylabel.pack()
 
     addButton = Button(manageWindow, fg='white', bg='#009a9a', activebackground='#009a9a', borderwidth=0, image=addimage, command=addpass)
-    addButton.place(rely=0.1, relx=0.2, x=0, y=0, anchor=S)
+    addButton.place(rely=0.1, relx=0.1, x=0, y=0, anchor=S)
 
     updateButton = Button(manageWindow, fg='white', bg='#009a9a', activebackground='#009a9a', borderwidth=0, image=updateimage, command=lambda: updatepass(passindex.get()))
     updateButton.place(rely=0.1, relx=0.75, x=0, y=0, anchor=S)
